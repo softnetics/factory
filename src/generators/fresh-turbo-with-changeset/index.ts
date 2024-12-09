@@ -203,7 +203,7 @@ export default defineGenerator({
     await sendAndWait$('pnpm format')
   },
   displayedCommand: 'pnpm create turbo --package-manager pnpm',
-  description: 'Fresh monorepo',
+  description: 'Fresh monorepo in Softenetics style',
   longDescription: 'Fresh monorepo, built with Turborepo',
   frameworkUrl: 'https://turborepo.org/',
   frameworkDocumentationUrl: 'https://turborepo.org/docs',
