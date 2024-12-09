@@ -1,0 +1,23 @@
+{
+  "name": "@replace-app-name/react-ui",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./*": "./src/components/*.tsx",
+    "./hooks": "./src/hooks/index.ts",
+    "./utils": "./src/utils/index.ts",
+    "./tailwind.css": "./src/tailwind/tailwind.css",
+    "./preset": "./src/tailwind/tailwind.config.ts",
+    "./icon": "./src/icons/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit",
+    "build-tailwind": "tsx ./src/tailwind/build.ts"
+  },
+  "devDependencies": {
+    "@replace-app-name/project-configs": "workspace:*"
+  }
+}

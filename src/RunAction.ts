@@ -30,7 +30,7 @@ export class RunAction extends GeneratorAction {
   protected async onExecute(): Promise<void> {
     console.log('=> Running generator', this.generator)
     const { default: generator } = (await import(
-      `./generators/${this.generator}.ts`
+      `./generators/${this.generator}`
     )) as { default: Generator }
 
     if (!this._skipGenerator.value) {
