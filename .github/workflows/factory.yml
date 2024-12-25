@@ -17,61 +17,13 @@ jobs:
       fail-fast: false
       matrix:
         generator:
-          - fresh-astro-project
-          - fresh-bun-project
-          - fresh-docusaurus-site
-          - fresh-elysia-project
-          - fresh-next-app-typescript
-          - fresh-next-app
-          - fresh-playwright-project
-          - fresh-react-app-typescript
-          - fresh-react-app
-          - fresh-remix-app
-          - fresh-remix-spa
-          - fresh-solid-app-ts
-          - fresh-sveltekit-app-typescript
-          - fresh-t3-app
-          - fresh-turbo-monorepo
-          - fresh-vite-app-lit-element-ts
-          - fresh-vite-app-lit-element
-          - fresh-vite-app-preact-ts
-          - fresh-vite-app-preact
-          - fresh-vite-app-react-ts
-          - fresh-vite-app-react
-          - fresh-vite-app-svelte-ts
-          - fresh-vite-app-svelte
-          - fresh-vite-app-ts
-          - fresh-vite-app-vue-ts
-          - fresh-vite-app-vue
-          - fresh-vite-app
-          - fresh-vitepress-site
-          - fresh-vscode-extension
-          - fresh-vscode-web-extension
+          - fresh-turbo-with-changeset
 
-          # Removed from the factory on 2024-01-31 due Remix no longer has a special Vercel config in their setup wizard.
-          # - fresh-remix-app-vercel
-
-          # Removed from the factory on 2024-01-31 due to lack of maintenance from my side (I have since switched to using pnpm).
-          # - fresh-yarn-pnp-project
-
-          # Removed from the factory on 2023-03-19 because the generator script fails very often.
-          # - fresh-redwood-app-typescript
-          # - fresh-redwood-app
-
-          # Removed from the factory on 2021-03-19 because the generator script fails on recent Node.js versions and the generator is not maintained anymore (no updates since 2020-10-13).
-          # See: https://stackoverflow.com/questions/69692842/error-message-error0308010cdigital-envelope-routinesunsupported)
-          # - fresh-tsdx-lib
-          # - fresh-tsdx-react-component-with-storybook
-          # - fresh-tsdx-react-component
-
-          # Removed from the factory on 2021-03-19 because the generator script does not support Node.js v18.
-          # See: https://github.com/microsoft/rushstack/issues/4017
-          # - fresh-rush-monorepo
     env:
       BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
       - uses: actions/checkout@v4
-      - uses: docker/setup-buildx-action@v1
+      - uses: docker/setup-buildx-action@v3
       - uses: docker/build-push-action@v2
         with:
           context: runner
@@ -108,7 +60,8 @@ jobs:
         if: '!inputs.dry-run'
         env:
           GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
-      - run: pnpm factory upload-result
-        if: '!inputs.dry-run'
-        env:
-          GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
+
+      # - run: pnpm factory upload-result
+      #   if: '!inputs.dry-run'
+      #   env:
+      #     GH_PUSH_TOKEN: ${{ steps.githubAppAuth.outputs.token }}
